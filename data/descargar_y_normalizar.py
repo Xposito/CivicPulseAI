@@ -244,13 +244,50 @@ def id_lugar_relacionado(evento):
     return m.group(1) if m else None
 
 
-def categoria_evento(tipo_uri, texto, por_defecto, nombre_lugar=""):
+# Reglas acordadas con el equipo al revisar a mano la categoría "otros"
+# (19/11/2026). Solo se aplican si el evento iba a quedar en "otros".
+# Se prueban en orden: (categoría, "titulo" o "lugar", patrón sin tildes).
+REVISION_OTROS = [
+    ("cine", "titulo", r"cineforum"),
+    ("taller", "titulo", r"autodefensa|autoproteccion|grupo de crianza|pedagogic"),
+    ("conferencia", "titulo", r"\b25n\b"),
+    ("teatro", "lugar", r"creacion dramatica"),          # Nave 10 Matadero
+    ("aire_libre", "lugar", r"educacion ambiental"),     # centros de educación ambiental
+    ("infantil", "lugar", r"quinta de los molinos"),     # Espacio Abierto (niños y adolescentes)
+    ("taller", "lugar", r"eduardo urculo"),              # jornadas de inclusión de Tetuán
+    ("musica", "titulo", r"gospel|choir"),
+    ("danza", "titulo", r"\bswing\b"),
+    ("club_lectura", "titulo", r"tertulia"),
+    ("literatura", "titulo", r"premio de poesia|de relato|entrega del .*premio"),
+    ("exposicion", "titulo", r"^muestra|photoespana"),
+    ("conferencia", "titulo", r"\bjornadas?\b|webinario"),
+]
+
+
+def revisar_otros(titulo, nombre_lugar):
+    campos = {"titulo": sin_tildes(titulo), "lugar": sin_tildes(nombre_lugar)}
+    for cat, campo, patron in REVISION_OTROS:
+        if re.search(patron, campos[campo]):
+            return cat
+    return None
+
+
+def categoria_evento(tipo_uri, texto, por_defecto, nombre_lugar="", titulo=""):
+    cat, sub, origen = _categoria_evento(tipo_uri, texto, por_defecto, nombre_lugar)
+    if cat == "otros":
+        nueva = revisar_otros(titulo or texto, nombre_lugar)
+        if nueva:
+            return nueva, sub, "revision_otros"
+    return cat, sub, origen
+
+
+def _categoria_evento(tipo_uri, texto, por_defecto, nombre_lugar=""):
     tipo = tipo_uri.split("/kos/actividades/")[-1] if "/kos/actividades/" in tipo_uri else ""
     sub = None
     if tipo:
         partes = tipo.split("/")
         sub = separar_camel(partes[-1])
-        cat = MAPA_TIPOS.get(tipo, MAPA_TIPOS.get(partes[0], "otros"))
+        cat = MAPA_TIPOS.get(tipo, MAPA_TIPOS.get(partes[0]))  # tipo desconocido -> palabras clave
         if cat:
             return cat, sub, "fuente"
     t = sin_tildes(texto)
@@ -543,7 +580,7 @@ def normalizar_eventos(carpeta_raw, offline, lugares, hoy):
             titulo = limpiar(r.get("title"))
             desc = limpiar(r.get("description"))
             cat, sub, cat_origen = categoria_evento(r.get("@type") or "", f"{titulo} {desc or ''}", defecto,
-                                                    r.get("event-location") or "")
+                                                    r.get("event-location") or "", titulo or "")
 
             publico = []
             for a in (r.get("audience") or "").split(","):

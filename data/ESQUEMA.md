@@ -169,6 +169,29 @@ palabras clave en el título y la descripción ("concierto" → música,
 ("Teatro…" → teatro, "Cineteca" → cine). La lista completa está en
 `PALABRAS_CLAVE` y `PALABRAS_LUGAR` dentro del script.
 
+**Revisión de "otros"** (hecha con el equipo el 19/11/2026). A los eventos que
+quedaban en `otros` se les aplica una última lista de reglas, `REVISION_OTROS`
+en el script. Esos eventos llevan `categoria_origen: "revision_otros"`.
+
+| Regla | Categoría |
+|---|---|
+| lugar "Nave 10 Matadero. Creación Dramática Contemporánea" | teatro |
+| lugar con "educación ambiental" | aire_libre |
+| lugar "Espacio Abierto Quinta de los Molinos" (niños y adolescentes) | infantil |
+| lugar "CC Eduardo Úrculo" (jornadas de inclusión de Tetuán) | taller |
+| título: cinefórum | cine |
+| título: autodefensa, autoprotección, grupo de crianza, pedagógicas | taller |
+| título: 25N, jornadas, webinario | conferencia |
+| título: góspel, gospel, choir | musica |
+| título: swing | danza |
+| título: tertulia | club_lectura |
+| título: premio de poesía o de relato, entrega del premio | literatura |
+| título que empieza por "Muestra", PHotoEspaña | exposicion |
+
+Los eventos de CondeDuque que solo llevan el nombre del artista, los servicios
+(asesoramiento, residencias, certámenes…) y los títulos ambiguos se quedan en
+`otros` a propósito: son 67 en total.
+
 "Infantil" es a la vez una categoría y un público: un concierto para familias
 tiene `categoria: "musica"` y `para_ninos: true`. Para el filtro "para niños"
 hay que usar `para_ninos`.
