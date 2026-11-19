@@ -17,7 +17,8 @@ Solo necesita Python 3.9 o superior, sin librerías externas. Genera estos fiche
 |---|---|
 | `data/actividades.json` | Todos los registros normalizados (unos 1.950) |
 | `data/actividades.ejemplo.json` | Muestra de 34 registros variados (2 eventos por categoría + 1 lugar por tipo) para desarrollar y hacer pruebas |
-| `data/raw/*.json` | Descargas originales sin tocar (no se suben a git) |
+| `data/banda_sinfonica.json` | Conciertos y plantilla de la Banda Sinfónica Municipal (aparte, ver abajo) |
+| `data/raw/*` | Descargas originales sin tocar (no se suben a git) |
 
 Los datasets se actualizan cada día. Conviene ejecutar el script la mañana de la
 entrega para que no salgan eventos ya pasados.
@@ -175,3 +176,42 @@ hay que usar `para_ninos`.
 museo 90 · exposición 60 · teatro 90 · música 90 · danza 75 · cine 110 ·
 infantil 60 · club de lectura 90 · literatura 60 · taller 90 · conferencia 60 ·
 deporte 60 · visita guiada 120 · aire libre 90 · fiestas 120 · otros 60.
+
+## Banda Sinfónica Municipal de Madrid (`banda_sinfonica.json`)
+
+Fuente: **Conciertos y plantilla de la Banda Sinfónica Municipal de Madrid**,
+[ficha](https://datos.madrid.es/dataset/135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid).
+Son dos CSV separados por `;`, en UTF-8 con BOM. Las URLs exactas están en el campo `fuente.descarga` del JSON.
+Ojo: la banda es del **Ayuntamiento**, no de la Comunidad de Madrid.
+
+Va en un fichero aparte porque **todos los conciertos son de 2025**, así que ya
+han pasado. Además no traen hora, precio ni dirección, y si se metieran en
+`actividades.json` el filtro de fechas los quitaría. Sirven para una tarjeta o
+sección "Banda Sinfónica" con el histórico, la programación habitual y la
+plantilla. Tampoco aparece ningún concierto de la banda en la agenda actual
+(datasets 1-4).
+
+**`conciertos[]`** (36):
+
+| Campo | Sale de | Origen |
+|---|---|---|
+| `titulo` | `NOMBRE CONCIERTO` | directo |
+| `tipo`, `ciclo` | `TIPO`, `CICLO` | directo (en `ciclo` se unifican las mayúsculas) |
+| `fecha` | `AÑO` + `MES` (en texto) + `DÍA` → `AAAA-MM-DD` | derivado |
+| `dia_semana` | se calcula a partir de `fecha` | derivado |
+| `lugar_nombre` | `UBICACIÓN`: solo el nombre ("Teatro Monumental", "Templete del Retiro"…), **sin coordenadas** | directo |
+| `artistas_invitados` | `ARTISTAS INVITADAS/OS` ("No aplica" → `null`) | directo |
+| `para_ninos` | `true` si `TIPO` contiene "Escolar" o "Familiar" | derivado |
+
+**`plantilla[]`** (93 puestos): `puesto`, `categoria`, `instrumento`,
+`tipo_instrumento`, `relacion` y `sexo`, que salen de las columnas del mismo
+nombre del CSV. **No trae nombres de personas.**
+
+`resumen_conciertos` y `resumen_plantilla` son recuentos ya hechos para pintar
+gráficos sin calcular nada: conciertos por lugar, ciclo y día de la semana, y
+plantilla por tipo de instrumento, instrumento, sexo, categoría y relación
+laboral, además del número de vacantes.
+
+Lo que se ve en los datos: en primavera y verano la banda toca **los domingos en
+el Templete del Retiro**, y en otoño e invierno **los martes en el Teatro
+Monumental**. Es el patrón habitual, no una programación publicada para 2026.

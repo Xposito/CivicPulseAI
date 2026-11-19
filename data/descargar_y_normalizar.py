@@ -5,6 +5,7 @@ de Madrid (https://datos.madrid.es) y los unifica en un único JSON:
 
     data/actividades.json          -> todos los registros normalizados
     data/actividades.ejemplo.json  -> muestra pequeña para desarrollar
+    data/banda_sinfonica.json      -> conciertos y plantilla de la Banda Sinfónica Municipal
 
 Uso (solo librería estándar de Python 3.9+, sin dependencias):
 
@@ -15,6 +16,8 @@ El esquema de salida y el origen de cada campo están en data/ESQUEMA.md.
 """
 
 import argparse
+import csv
+import io
 import html
 import json
 import re
@@ -43,6 +46,17 @@ DATASETS_LUGARES = [
     ("200304-0-centros-culturales", "Centros culturales municipales (incluyen socioculturales y juveniles)", "centro_cultural"),
     ("200186-0-polideportivos", "Deportes. Centros deportivos municipales (polideportivos)", "deporte"),
 ]
+
+# Banda Sinfónica Municipal de Madrid: dataset en CSV (dos ficheros).
+BSMM_SLUG = "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+BSMM_NOMBRE = "Conciertos y plantilla de la Banda Sinfónica Municipal de Madrid"
+BSMM_CSV = {
+    "conciertos": f"{FICHA}{BSMM_SLUG}/resource/135161-1-{BSMM_SLUG[9:]}/download/datos-abiertos-bsmm-conciertos-v3.csv",
+    "plantilla": f"{FICHA}{BSMM_SLUG}/resource/135161-3-{BSMM_SLUG[9:]}/download/1.-datos-abiertos-plantilla-bsmm-v3.csv",
+}
+MESES = {m: i for i, m in enumerate(["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+                                     "septiembre", "octubre", "noviembre", "diciembre"], 1)}
+DIAS_ES = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"]
 
 # Lista CERRADA de categorías. El frontend puede usarla tal cual para los filtros.
 CATEGORIAS = {
@@ -462,6 +476,83 @@ def normalizar_eventos(carpeta_raw, offline, lugares, hoy):
     return eventos, descartados_pasados
 
 
+# ---------------------------------------------------------------- banda sinfónica
+
+def leer_csv(nombre, carpeta_raw, offline):
+    ruta = carpeta_raw / f"bsmm-{nombre}.csv"
+    if not offline:
+        print(f"  descargando {BSMM_CSV[nombre]}", file=sys.stderr)
+        req = urllib.request.Request(BSMM_CSV[nombre], headers={"User-Agent": "civicpulse-hackathon"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            ruta.write_bytes(r.read())
+    texto = ruta.read_bytes().decode("utf-8-sig")  # trae BOM y separador ";"
+    filas = list(csv.reader(io.StringIO(texto), delimiter=";"))
+    cab = [limpiar(c) for c in filas[0]]
+    return [{c: limpiar(v) for c, v in zip(cab, f) if c} for f in filas[1:] if any(x.strip() for x in f)]
+
+
+def contar(filas, campo):
+    out = {}
+    for f in filas:
+        v = f.get(campo) or "Sin dato"
+        v = v[0].upper() + v[1:].lower() if campo == "Tipo instrumento" else v
+        out[v] = out.get(v, 0) + 1
+    return dict(sorted(out.items(), key=lambda kv: -kv[1]))
+
+
+def banda_sinfonica(carpeta_raw, offline):
+    conciertos = []
+    for i, f in enumerate(leer_csv("conciertos", carpeta_raw, offline), 1):
+        try:
+            fecha = date(int(f["AÑO"]), MESES[sin_tildes(f["MES"])], int(f["DÍA"]))
+        except (KeyError, ValueError, TypeError):
+            fecha = None
+        invitados = f.get("ARTISTAS INVITADAS/OS")
+        tipo = f.get("TIPO") or ""
+        conciertos.append({
+            "id": f"bsmm-{i}",
+            "titulo": f.get("NOMBRE CONCIERTO"),
+            "tipo": tipo,                               # TIPO
+            "ciclo": (f.get("CICLO") or "").capitalize() or None,  # CICLO (unifica mayúsculas)
+            "fecha": fecha.isoformat() if fecha else None,  # AÑO + MES + DÍA
+            "dia_semana": DIAS_ES[fecha.weekday()] if fecha else None,  # derivado
+            "lugar_nombre": f.get("UBICACIÓN"),         # UBICACIÓN (solo nombre, sin dirección ni coordenadas)
+            "artistas_invitados": None if invitados == "No aplica" else invitados,
+            "para_ninos": bool(re.search(r"escolar|familiar", sin_tildes(tipo))),  # derivado de TIPO
+            "categoria": "musica",
+            "fuente": BSMM_SLUG,
+        })
+    plantilla = [{
+        "puesto": f.get("PUESTO"),
+        "categoria": f.get("CATEGORIA"),
+        "instrumento": f.get("INSTRUMENTO"),
+        "tipo_instrumento": (f.get("Tipo instrumento") or "").capitalize() or None,
+        "relacion": f.get("RELACIÓN"),
+        "sexo": f.get("SEXO"),
+    } for f in leer_csv("plantilla", carpeta_raw, offline)]
+    filas = [{"Tipo instrumento": p["tipo_instrumento"], "INSTRUMENTO": p["instrumento"], "SEXO": p["sexo"],
+              "CATEGORIA": p["categoria"], "RELACIÓN": p["relacion"]} for p in plantilla]
+    return {
+        "fuente": {"id": BSMM_SLUG, "nombre": BSMM_NOMBRE, "ficha": ficha(BSMM_SLUG), "descarga": BSMM_CSV},
+        "aviso": "Los conciertos publicados son de la temporada 2025 (ya pasados). Sirven como histórico y para "
+                 "mostrar la programación habitual de la Banda, no como eventos próximos.",
+        "conciertos": conciertos,
+        "resumen_conciertos": {"por_lugar": contar([{"x": c["lugar_nombre"]} for c in conciertos], "x"),
+                               "por_ciclo": contar([{"x": c["ciclo"]} for c in conciertos], "x"),
+                               "por_dia_semana": contar([{"x": c["dia_semana"]} for c in conciertos], "x")},
+        "plantilla": plantilla,
+        "resumen_plantilla": {
+            "total_puestos": len(plantilla),
+            "vacantes": sum(1 for p in plantilla if p["instrumento"] == "Vacante"),
+            "por_tipo_instrumento": contar(filas, "Tipo instrumento"),
+            "por_instrumento": contar(filas, "INSTRUMENTO"),
+            "por_sexo": contar(filas, "SEXO"),
+            "por_categoria": contar(filas, "CATEGORIA"),
+            "por_relacion": contar(filas, "RELACIÓN"),
+        },
+    }
+
+
 # ---------------------------------------------------------------- main
 
 def main():
@@ -510,6 +601,10 @@ def main():
     (carpeta / "actividades.ejemplo.json").write_text(
         json.dumps({**salida, "total": len(muestra), "actividades": muestra}, ensure_ascii=False, indent=1),
         encoding="utf-8")
+
+    bsmm = banda_sinfonica(raw, args.offline)
+    (carpeta / "banda_sinfonica.json").write_text(json.dumps(bsmm, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"Banda Sinfónica: {len(bsmm['conciertos'])} conciertos, {len(bsmm['plantilla'])} puestos de plantilla")
 
     # Resumen por pantalla
     ev = list(eventos.values())

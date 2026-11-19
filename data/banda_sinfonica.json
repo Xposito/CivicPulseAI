@@ -1,0 +1,1322 @@
+{
+ "fuente": {
+  "id": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid",
+  "nombre": "Conciertos y plantilla de la Banda Sinfónica Municipal de Madrid",
+  "ficha": "https://datos.madrid.es/dataset/135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid",
+  "descarga": {
+   "conciertos": "https://datos.madrid.es/dataset/135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid/resource/135161-1-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid/download/datos-abiertos-bsmm-conciertos-v3.csv",
+   "plantilla": "https://datos.madrid.es/dataset/135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid/resource/135161-3-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid/download/1.-datos-abiertos-plantilla-bsmm-v3.csv"
+  }
+ },
+ "aviso": "Los conciertos publicados son de la temporada 2025 (ya pasados). Sirven como histórico y para mostrar la programación habitual de la Banda, no como eventos próximos.",
+ "conciertos": [
+  {
+   "id": "bsmm-1",
+   "titulo": "Concierto Reyes 2025",
+   "tipo": "Concierto Extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-01-05",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Teatro Real",
+   "artistas_invitados": "Clara Montes",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-2",
+   "titulo": "Concierto Escolar",
+   "tipo": "Concierto extraordinario- Escolar",
+   "ciclo": "Extraordinario-escolar",
+   "fecha": "2025-01-24",
+   "dia_semana": "viernes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Compañía de Titeres PerPoc",
+   "para_ninos": true,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-3",
+   "titulo": "Concierto Familiar",
+   "tipo": "Concierto extraordinario- Familiar",
+   "ciclo": "Extraordinario-familiar",
+   "fecha": "2025-01-26",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Compañía de Titeres PerPoc",
+   "para_ninos": true,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-4",
+   "titulo": "Concierto nº 1 Invierno",
+   "tipo": "Concierto Ciclo Invierno",
+   "ciclo": "Invierno",
+   "fecha": "2025-02-04",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Director Luis Serrano, Solista trompa Radovan Vlatkovic",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-5",
+   "titulo": "Concierto nº 2 Invierno",
+   "tipo": "Concierto Ciclo Invierno",
+   "ciclo": "Invierno",
+   "fecha": "2025-02-18",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Solista piano Enrique Lapaz",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-6",
+   "titulo": "Concierto nº 3 Invierno",
+   "tipo": "Concierto Ciclo Invierno",
+   "ciclo": "Invierno",
+   "fecha": "2025-03-04",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-7",
+   "titulo": "Concierto nº 4 Invierno",
+   "tipo": "Concierto Ciclo Invierno",
+   "ciclo": "Invierno",
+   "fecha": "2025-03-18",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Director Romero Llopis y solista trombón Ximo Civedo",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-8",
+   "titulo": "Concierto nº 5 Invierno",
+   "tipo": "Concierto Ciclo Invierno",
+   "ciclo": "Invierno",
+   "fecha": "2025-04-01",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-9",
+   "titulo": "Concierto Semana Santa",
+   "tipo": "Concierto extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-04-10",
+   "dia_semana": "jueves",
+   "lugar_nombre": "Catedral de la Almudena",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-10",
+   "titulo": "Concierto nº 6 Invierno",
+   "tipo": "Concierto Ciclo Invierno",
+   "ciclo": "Invierno",
+   "fecha": "2025-04-29",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Solista marimba Krystina Marcoux",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-11",
+   "titulo": "Concierto San Isidro",
+   "tipo": "Concierto extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-05-14",
+   "dia_semana": "miercoles",
+   "lugar_nombre": "Plaza Mayor",
+   "artistas_invitados": "Plácido Domingo",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-12",
+   "titulo": "Entrega de Medallas",
+   "tipo": "Concierto extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-05-15",
+   "dia_semana": "jueves",
+   "lugar_nombre": "Centro-Centro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-13",
+   "titulo": "Concierto nº 1 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-05-18",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-14",
+   "titulo": "Concierto nº 2 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-05-25",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": "Director Marcel Ortega i Martí",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-15",
+   "titulo": "Concierto nº 3 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-06-01",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": "Directora Amadora Mercado",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-16",
+   "titulo": "Concierto nº 4 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-06-08",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": "Director Miro Saje",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-17",
+   "titulo": "Concierto nº 5 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-06-15",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-18",
+   "titulo": "Concierto en Distrito Hortaleza",
+   "tipo": "Concierto Distrito",
+   "ciclo": "Distrito",
+   "fecha": "2025-06-20",
+   "dia_semana": "viernes",
+   "lugar_nombre": "Hortaleza",
+   "artistas_invitados": "Solista violín Elina Sitnikava",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-19",
+   "titulo": "Concierto Día de la Música",
+   "tipo": "Concierto Extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-06-21",
+   "dia_semana": "sabado",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": "Solista violín Elina Sitnikava",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-20",
+   "titulo": "Concierto nº 7 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-06-29",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-21",
+   "titulo": "Concierto Veranos de la Villa",
+   "tipo": "Concierto Extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-07-07",
+   "dia_semana": "lunes",
+   "lugar_nombre": "Paseo del Rey",
+   "artistas_invitados": "La Fura dels Baus",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-22",
+   "titulo": "Concierto nº 9 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-07-13",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-23",
+   "titulo": "Concierto en Valencia",
+   "tipo": "Concierto Extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-07-19",
+   "dia_semana": "sabado",
+   "lugar_nombre": "Valencia",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-24",
+   "titulo": "Concierto en Distrito Vicálvaro",
+   "tipo": "Concierto Distrito",
+   "ciclo": "Distrito",
+   "fecha": "2025-07-26",
+   "dia_semana": "sabado",
+   "lugar_nombre": "Vicálvaro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-25",
+   "titulo": "Concierto nº 11 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-07-27",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-26",
+   "titulo": "Concierto nº 12 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-09-07",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": "Director Björn Bus",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-27",
+   "titulo": "Concierto nº 13 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-09-14",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-28",
+   "titulo": "Concierto nº 14 Primavera/verano",
+   "tipo": "Concierto Ciclo Primavera/verano",
+   "ciclo": "Primavera/verano",
+   "fecha": "2025-09-21",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Templete del Retiro",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-29",
+   "titulo": "Concierto nº 1 Ciclo deOtoño",
+   "tipo": "Concierto Ciclo Otoño",
+   "ciclo": "Otoño",
+   "fecha": "2025-10-07",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-30",
+   "titulo": "Concierto nº 2 Ciclo deOtoño",
+   "tipo": "Concierto Ciclo Otoño",
+   "ciclo": "Otoño",
+   "fecha": "2025-10-21",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Solista piano Mª Dolores Gaitán",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-31",
+   "titulo": "Conexión Madrid-Buenos Aires",
+   "tipo": "Concierto extraordinario-familiar",
+   "ciclo": "Extraordinario-familiar",
+   "fecha": "2025-10-26",
+   "dia_semana": "domingo",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": null,
+   "para_ninos": true,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-32",
+   "titulo": "Concierto nº 3 Ciclo deOtoño",
+   "tipo": "Concierto Ciclo Otoño",
+   "ciclo": "Otoño",
+   "fecha": "2025-11-04",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Solista bombardino Mauro Martins",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-33",
+   "titulo": "Concierto La Almudena",
+   "tipo": "Concierto Extraordinario",
+   "ciclo": "Extraordinario",
+   "fecha": "2025-11-06",
+   "dia_semana": "jueves",
+   "lugar_nombre": "Catedral de la Almudena",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-34",
+   "titulo": "Concierto nº 4 Ciclo deOtoño",
+   "tipo": "Concierto Ciclo Otoño",
+   "ciclo": "Otoño",
+   "fecha": "2025-11-18",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Director Carlos Garcés",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-35",
+   "titulo": "Concierto nº 5 Ciclo deOtoño",
+   "tipo": "Concierto Ciclo Otoño",
+   "ciclo": "Otoño",
+   "fecha": "2025-12-02",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": "Solista soprano Maite Alberola",
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  },
+  {
+   "id": "bsmm-36",
+   "titulo": "Concierto nº 6 Ciclo deOtoño",
+   "tipo": "Concierto Ciclo Otoño",
+   "ciclo": "Otoño",
+   "fecha": "2025-12-16",
+   "dia_semana": "martes",
+   "lugar_nombre": "Teatro Monumental",
+   "artistas_invitados": null,
+   "para_ninos": false,
+   "categoria": "musica",
+   "fuente": "135161-0-conciertos-y-personal-de-la-banda-sinfonica-municipal-de-madrid"
+  }
+ ],
+ "resumen_conciertos": {
+  "por_lugar": {
+   "Teatro Monumental": 15,
+   "Templete del Retiro": 12,
+   "Catedral de la Almudena": 2,
+   "Teatro Real": 1,
+   "Plaza Mayor": 1,
+   "Centro-Centro": 1,
+   "Hortaleza": 1,
+   "Paseo del Rey": 1,
+   "Valencia": 1,
+   "Vicálvaro": 1
+  },
+  "por_ciclo": {
+   "Primavera/verano": 11,
+   "Extraordinario": 8,
+   "Invierno": 6,
+   "Otoño": 6,
+   "Extraordinario-familiar": 2,
+   "Distrito": 2,
+   "Extraordinario-escolar": 1
+  },
+  "por_dia_semana": {
+   "domingo": 14,
+   "martes": 12,
+   "jueves": 3,
+   "sabado": 3,
+   "viernes": 2,
+   "miercoles": 1,
+   "lunes": 1
+  }
+ },
+ "plantilla": [
+  {
+   "puesto": "Director artístico BSMM",
+   "categoria": "Director Banda",
+   "instrumento": "Director",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Contratación artística",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Subdirector BSMM",
+   "categoria": "Director Banda",
+   "instrumento": "Director",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Concertino",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Músico archivero",
+   "instrumento": "Trompa",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Oboe",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Saxofón tenor",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Saxofón barítono",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Violonchelo",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Oboe/corno inglés",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Flauta",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Trompeta",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Trompeta",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Bombardino",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Contrabajo",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Fagot",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Trombón",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Percusión",
+   "tipo_instrumento": "Percusión",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Trompa",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Tuba",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Flauta",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Saxofón alto",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Saxofón soprano",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Arpa",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Clarinete/requinto",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Trompeta/fliscorno",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Solista",
+   "instrumento": "Clarinete bajo",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Trombón",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Flauta",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Fliscorno",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Trombón",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Bombardino",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Trombón",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Percusión",
+   "tipo_instrumento": "Percusión",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Percusión",
+   "tipo_instrumento": "Percusión",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Tuba",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Trompeta",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Violonchelo",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Clarinete alto",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Fagot",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Saxofón tenor",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Contrabajo",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Saxofón alto",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Trompa",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Trompeta",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Clarinete/requinto",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Vacante",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Ayudante de solista",
+   "instrumento": "Tuba",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Flauta",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Percusión",
+   "tipo_instrumento": "Percusión",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Percusión",
+   "tipo_instrumento": "Percusión",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Vacante",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Bombardino",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Oboe",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Saxofón bajo",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Trompa",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Trompeta",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Trombón",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Saxofón alto",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Vacante",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Trompa",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Saxofón bajo",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Violonchelo",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Vacante",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Fagot",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Trompeta",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Percusión",
+   "tipo_instrumento": "Percusión",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Trompa",
+   "tipo_instrumento": "Viento metal",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Contrabajo",
+   "tipo_instrumento": "Cuerda",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Instrumentista",
+   "categoria": "Profesor/a músico/a",
+   "instrumento": "Clarinete",
+   "tipo_instrumento": "Viento madera",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Jefe departamento de Apoyo a la BSMM",
+   "categoria": "Técnico",
+   "instrumento": "No aplica",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "Masculino"
+  },
+  {
+   "puesto": "Adjunta departamento Unidad de Apoyo BSMM",
+   "categoria": "Técnico de gestión",
+   "instrumento": "No aplica",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Adjunta Unidad Negociado de actividades",
+   "categoria": "Administración",
+   "instrumento": "No aplica",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "Femenino"
+  },
+  {
+   "puesto": "Jefe/a de negociado",
+   "categoria": "Administración",
+   "instrumento": "No aplica",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Administrativo/a auxiliar",
+   "categoria": "Administración",
+   "instrumento": "No aplica",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Encargado/a oficina auxiliar secretaría",
+   "categoria": "Administración",
+   "instrumento": "No aplica",
+   "tipo_instrumento": "No aplica",
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  },
+  {
+   "puesto": "Encargado/a edificios y dependencias",
+   "categoria": "Oficial edificios",
+   "instrumento": "No aplica",
+   "tipo_instrumento": null,
+   "relacion": "Funcionarial",
+   "sexo": "No aplica"
+  }
+ ],
+ "resumen_plantilla": {
+  "total_puestos": 93,
+  "vacantes": 4,
+  "por_tipo_instrumento": {
+   "Viento madera": 42,
+   "Viento metal": 25,
+   "No aplica": 12,
+   "Cuerda": 7,
+   "Percusión": 6,
+   "Sin dato": 1
+  },
+  "por_instrumento": {
+   "Clarinete": 19,
+   "No aplica": 7,
+   "Trompa": 6,
+   "Trompeta": 6,
+   "Percusión": 6,
+   "Trombón": 5,
+   "Flauta": 4,
+   "Vacante": 4,
+   "Violonchelo": 3,
+   "Bombardino": 3,
+   "Contrabajo": 3,
+   "Fagot": 3,
+   "Tuba": 3,
+   "Saxofón alto": 3,
+   "Director": 2,
+   "Oboe": 2,
+   "Saxofón tenor": 2,
+   "Clarinete/requinto": 2,
+   "Saxofón bajo": 2,
+   "Saxofón barítono": 1,
+   "Oboe/corno inglés": 1,
+   "Saxofón soprano": 1,
+   "Arpa": 1,
+   "Trompeta/fliscorno": 1,
+   "Clarinete bajo": 1,
+   "Fliscorno": 1,
+   "Clarinete alto": 1
+  },
+  "por_sexo": {
+   "Masculino": 69,
+   "Femenino": 16,
+   "No aplica": 8
+  },
+  "por_categoria": {
+   "Profesor/a músico/a": 36,
+   "Solista": 23,
+   "Ayudante de solista": 23,
+   "Administración": 4,
+   "Director Banda": 2,
+   "Concertino": 1,
+   "Músico archivero": 1,
+   "Técnico": 1,
+   "Técnico de gestión": 1,
+   "Oficial edificios": 1
+  },
+  "por_relacion": {
+   "Funcionarial": 92,
+   "Contratación artística": 1
+  }
+ }
+}
