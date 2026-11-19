@@ -6,6 +6,7 @@ de Madrid (https://datos.madrid.es) y los unifica en un único JSON:
     data/actividades.json          -> todos los registros normalizados
     data/actividades.ejemplo.json  -> muestra pequeña para desarrollar
     data/actividades.csv           -> los mismos registros en tabla plana, limpios para filtrar
+    data/eventos.csv + lugares.csv -> lo mismo en dos tablas relacionadas por lugar_id
     data/banda_sinfonica.json      -> conciertos y plantilla de la Banda Sinfónica Municipal
 
 Uso (solo librería estándar de Python 3.9+, sin dependencias):
@@ -418,6 +419,45 @@ def escribir_csv(ruta, registros, hoy):
             w.writerow(fila_csv(r, hoy))
 
 
+COLUMNAS_LUGARES = [
+    "lugar_id", "nombre", "categoria", "categoria_nombre", "subcategoria",
+    "gratis", "duracion_min", "duracion_estimada", "horario_texto",
+    "direccion", "codigo_postal", "distrito", "barrio", "lat", "lon",
+    "num_eventos", "descripcion", "url", "fuente", "fuentes",
+]
+# Campos de ubicación que el evento puede traer propios. Si coinciden con los de
+# su lugar, se dejan vacíos en eventos.csv para no repetirlos (se sacan del JOIN).
+UBICACION = ["direccion", "codigo_postal", "distrito", "barrio", "lat", "lon"]
+COLUMNAS_EVENTOS = [c for c in COLUMNAS_CSV if c not in ("tipo_registro", "horario_texto", "num_eventos")]
+
+
+def escribir_tablas(carpeta, registros, hoy):
+    lugares = {r["id"]: fila_csv(r, hoy) for r in registros if r["tipo_registro"] == "lugar"}
+    with open(carpeta / "lugares.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=COLUMNAS_LUGARES, extrasaction="ignore")
+        w.writeheader()
+        for lid, fila in lugares.items():
+            w.writerow({**fila, "lugar_id": lid, "nombre": fila["titulo"]})
+    quitados = 0
+    with open(carpeta / "eventos.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=COLUMNAS_EVENTOS, extrasaction="ignore")
+        w.writeheader()
+        for r in registros:
+            if r["tipo_registro"] != "evento":
+                continue
+            fila = fila_csv(r, hoy)
+            lugar = lugares.get(r["lugar_id"])
+            if lugar:
+                for c in UBICACION:
+                    if fila[c] != "" and str(fila[c]) == str(lugar[c]):
+                        fila[c] = ""
+                        quitados += 1
+                if fila["lat"] == "":
+                    fila["coordenadas_origen"] = "lugar_relacionado"
+            w.writerow(fila)
+    return quitados
+
+
 def ficha(slug):
     return f"{FICHA}{slug}"
 
@@ -675,6 +715,7 @@ def main():
     registros.sort(key=lambda x: (x["tipo_registro"], x["fecha_inicio"] or "", x["titulo"] or ""))
     registros, duplicados = limpieza_final(registros)
     escribir_csv(carpeta / "actividades.csv", registros, hoy)
+    escribir_tablas(carpeta, registros, hoy)
 
     fuentes = [
         {"id": s, "nombre": n, "tipo": "eventos", "ficha": ficha(s), "descarga": f"{BASE}{s}.json"}

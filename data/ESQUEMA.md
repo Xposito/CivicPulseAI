@@ -17,6 +17,7 @@ Solo necesita Python 3.9 o superior, sin librerías externas. Genera estos fiche
 |---|---|
 | `data/actividades.json` | Todos los registros normalizados (1.941) |
 | `data/actividades.csv` | Los mismos registros en una tabla plana y limpia (una fila por actividad), lista para filtrar |
+| `data/eventos.csv` + `data/lugares.csv` | Los mismos datos en dos tablas relacionadas por `lugar_id` (recomendado para el backend) |
 | `data/actividades.ejemplo.json` | Muestra de 34 registros variados (2 eventos por categoría + 1 lugar por tipo) para desarrollar y hacer pruebas |
 | `data/banda_sinfonica.json` | Conciertos y plantilla de la Banda Sinfónica Municipal (aparte, ver abajo) |
 | `data/raw/*` | Descargas originales sin tocar (no se suben a git) |
@@ -217,6 +218,52 @@ texto/CSV*, eligiendo UTF-8.
 - **Códigos postales** que no tienen la forma 28xxx se dejan vacíos.
 - **Textos** en una sola línea: sin saltos de línea ni espacios dobles. Las
   entidades HTML como `&amp;` se convierten a su carácter.
+
+## `eventos.csv` y `lugares.csv` (dos tablas relacionadas)
+
+Son los mismos datos que `actividades.csv`, pero separados en dos tablas para
+no repetir los datos de cada lugar en cada uno de sus eventos. Las columnas
+tienen el mismo formato que en `actividades.csv`.
+
+```
+lugares.csv (331)                       eventos.csv (1.610)
+-----------------                       -------------------
+lugar_id  (clave)  <------------------  lugar_id  (clave foránea, vacía en el 37 %)
+nombre, categoria, horario_texto,       id, titulo, categoria, precio, fechas,
+direccion, distrito, lat, lon,          horas, días, público, lugar_nombre,
+num_eventos, url…                       direccion, distrito, lat, lon (solo si son propios)…
+```
+
+**Regla de la ubicación en `eventos.csv`**
+
+- **Evento sin `lugar_id`** (594): conserva siempre su propia ubicación, con
+  `lugar_nombre`, `direccion`, `distrito`, `lat`, `lon` y el resto.
+- **Evento con `lugar_id`** (1.016): las columnas de ubicación (`direccion`,
+  `codigo_postal`, `distrito`, `barrio`, `lat`, `lon`) se dejan **vacías** cuando
+  coinciden con las de su lugar. Solo se rellenan si el evento trae una
+  ubicación distinta, cosa que pasa en 9 casos, por ejemplo una actividad en un
+  parque cercano. En ese caso `coordenadas_origen` vale `lugar_relacionado`, que
+  quiere decir que hay que coger las coordenadas de `lugares.csv`.
+- `lugar_nombre` se mantiene siempre, porque es el nombre que da el propio
+  evento, como "Sala Polivalente".
+
+**Cómo juntarlas en el backend:** se cruza cada evento con su lugar por
+`lugar_id` y se usa el dato del evento si lo tiene y, si no, el del lugar. En
+SQL sería así:
+
+```sql
+SELECT e.*, COALESCE(e.lat, l.lat) AS lat, COALESCE(e.lon, l.lon) AS lon,
+       COALESCE(e.distrito, l.distrito) AS distrito, l.horario_texto
+FROM eventos e LEFT JOIN lugares l ON e.lugar_id = l.lugar_id;
+```
+
+En JavaScript se hace lo mismo con un `Map` de lugares por `lugar_id` y
+`evento.lat || lugar?.lat`. Con eso, 1.457 eventos tienen coordenadas,
+exactamente los mismos que en `actividades.csv`.
+
+`eventos.csv` no tiene `horario_texto` ni `num_eventos`, que son datos del
+lugar. `lugares.csv` no tiene fechas, precios ni público.
+`actividades.csv` se mantiene por compatibilidad.
 
 ## Banda Sinfónica Municipal de Madrid (`banda_sinfonica.json`)
 
