@@ -15,7 +15,8 @@ Solo necesita Python 3.9 o superior, sin librerías externas. Genera estos fiche
 
 | Fichero | Qué es |
 |---|---|
-| `data/actividades.json` | Todos los registros normalizados (unos 1.950) |
+| `data/actividades.json` | Todos los registros normalizados (1.941) |
+| `data/actividades.csv` | Los mismos registros en una tabla plana y limpia (una fila por actividad), lista para filtrar |
 | `data/actividades.ejemplo.json` | Muestra de 34 registros variados (2 eventos por categoría + 1 lugar por tipo) para desarrollar y hacer pruebas |
 | `data/banda_sinfonica.json` | Conciertos y plantilla de la Banda Sinfónica Municipal (aparte, ver abajo) |
 | `data/raw/*` | Descargas originales sin tocar (no se suben a git) |
@@ -176,6 +177,46 @@ hay que usar `para_ninos`.
 museo 90 · exposición 60 · teatro 90 · música 90 · danza 75 · cine 110 ·
 infantil 60 · club de lectura 90 · literatura 60 · taller 90 · conferencia 60 ·
 deporte 60 · visita guiada 120 · aire libre 90 · fiestas 120 · otros 60.
+
+## `actividades.csv` (tabla limpia para filtrar)
+
+Tiene una fila por actividad y 48 columnas. Va en UTF-8, separado por comas y
+con comillas solo donde hace falta. En Excel se abre con *Datos → Desde
+texto/CSV*, eligiendo UTF-8.
+
+**Formato de cada tipo de dato**
+
+| Tipo | Formato | Columnas |
+|---|---|---|
+| Sí/no | `true` / `false`. Vacío = no se sabe | `gratis`, `para_ninos`, `duracion_estimada`, `es_recurrente`, `tiene_coordenadas`, `lunes`…`domingo`, `publico_*` |
+| Número | punto decimal. Vacío = sin dato | `precio_min` (€), `duracion_min`, `lat`, `lon`, `num_eventos` |
+| Fecha | `AAAA-MM-DD` | `fecha_inicio`, `fecha_fin` |
+| Hora | `HH:MM` | `hora_inicio`, `hora_fin` |
+| Lista | valores separados por `;` | `dias_semana`, `dias_excluidos`, `publico`, `fuentes` |
+
+**Columnas que solo están en el CSV**
+
+- `categoria_nombre`: el nombre legible de la categoría, como "Club de lectura".
+- `lunes` … `domingo`: dicen si hay sesión ese día de la semana. En los eventos
+  de un solo día se calcula a partir de la fecha. Vacío = sin información, como
+  en un curso largo sin días indicados.
+- `es_recurrente`: vale `true` si la fuente trae días de la semana que se repiten.
+- `estado`: `proximo` (todavía no ha empezado), `en_curso` (ya empezó y no ha
+  terminado) o `permanente` (un lugar).
+- `publico_infantil`, `publico_familias`, `publico_jovenes`, `publico_mayores`:
+  la lista `publico` separada en columnas sí/no.
+- `tiene_coordenadas`: sirve para quitar del mapa las 153 filas sin `lat`/`lon`.
+
+**Limpieza extra, que se aplica también a `actividades.json`**
+
+- Se quitan 13 eventos **duplicados**: mismo título, lugar, día y hora pero
+  distinto `id` en la fuente. Sus `fuentes` se juntan en el registro que se queda.
+- **Títulos**: los que venían en MAYÚSCULAS pasan a minúsculas normales, y se
+  quitan las comillas « » que envolvían todo el título.
+- **URLs**: `http://www.madrid.es` pasa a `https://`.
+- **Códigos postales** que no tienen la forma 28xxx se dejan vacíos.
+- **Textos** en una sola línea: sin saltos de línea ni espacios dobles. Las
+  entidades HTML como `&amp;` se convierten a su carácter.
 
 ## Banda Sinfónica Municipal de Madrid (`banda_sinfonica.json`)
 

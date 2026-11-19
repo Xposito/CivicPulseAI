@@ -5,6 +5,7 @@ de Madrid (https://datos.madrid.es) y los unifica en un único JSON:
 
     data/actividades.json          -> todos los registros normalizados
     data/actividades.ejemplo.json  -> muestra pequeña para desarrollar
+    data/actividades.csv           -> los mismos registros en tabla plana, limpios para filtrar
     data/banda_sinfonica.json      -> conciertos y plantilla de la Banda Sinfónica Municipal
 
 Uso (solo librería estándar de Python 3.9+, sin dependencias):
@@ -316,6 +317,107 @@ def sumar_minutos(hora, minutos):
     return h.strftime("%H:%M")
 
 
+# ---------------------------------------------------------------- limpieza final
+
+def arreglar_titulo(t):
+    """Quita comillas « » que envuelven todo el título y baja las MAYÚSCULAS."""
+    if not t:
+        return t
+    t = t.strip()
+    if t.startswith("«") and t.endswith("»"):
+        t = t[1:-1].strip()
+    letras = [c for c in t if c.isalpha()]
+    if letras and all(c.isupper() for c in letras) and len(letras) > 3:
+        t = t.title() if len(t.split()) <= 3 else t[0] + t[1:].lower()
+    return t
+
+
+def limpieza_final(registros):
+    """Arreglos comunes a JSON y CSV. Devuelve (registros, nº duplicados quitados)."""
+    vistos, salida, quitados = {}, [], 0
+    for r in registros:
+        r["titulo"] = arreglar_titulo(r["titulo"])
+        if r["url"]:
+            r["url"] = r["url"].replace("http://www.madrid.es", "https://www.madrid.es")
+        if r["codigo_postal"] and not re.fullmatch(r"28\d{3}", r["codigo_postal"]):
+            r["codigo_postal"] = None
+        # Mismo título, lugar, día y hora con distinto id = evento duplicado en la fuente.
+        if r["tipo_registro"] == "evento":
+            clave = (sin_tildes(r["titulo"]), sin_tildes(r["lugar_nombre"] or ""), r["fecha_inicio"], r["hora_inicio"])
+            if clave in vistos:
+                quitados += 1
+                for f in r["fuentes"]:
+                    if f not in vistos[clave]["fuentes"]:
+                        vistos[clave]["fuentes"].append(f)
+                continue
+            vistos[clave] = r
+        salida.append(r)
+    return salida, quitados
+
+
+COLUMNAS_CSV = [
+    "id", "tipo_registro", "titulo", "categoria", "categoria_nombre", "subcategoria",
+    "gratis", "precio_min", "precio_texto",
+    "fecha_inicio", "fecha_fin", "hora_inicio", "hora_fin", "duracion_min", "duracion_estimada",
+    "dias_semana", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo",
+    "dias_excluidos", "es_recurrente", "estado",
+    "para_ninos", "publico", "publico_infantil", "publico_familias", "publico_jovenes", "publico_mayores",
+    "lugar_nombre", "lugar_id", "direccion", "codigo_postal", "distrito", "barrio",
+    "lat", "lon", "tiene_coordenadas", "coordenadas_origen", "num_eventos",
+    "horario_texto", "descripcion", "url", "fuente", "fuentes",
+]
+
+
+def fila_csv(r, hoy):
+    """Convierte un registro a una fila plana: listas -> texto con ';' o columnas sí/no."""
+    def b(v):
+        return "" if v is None else ("true" if v else "false")
+    dias = r["dias_semana"] or []
+    if not dias and r["fecha_inicio"] and r["fecha_inicio"] == r["fecha_fin"]:
+        dias = [DIAS_ES[date.fromisoformat(r["fecha_inicio"]).weekday()]]  # evento de un solo día
+    pub = r["publico"] or []
+    if r["tipo_registro"] == "lugar":
+        estado = "permanente"
+    elif r["fecha_inicio"] and r["fecha_inicio"] > hoy.isoformat():
+        estado = "proximo"
+    else:
+        estado = "en_curso"
+    fila = {
+        **{k: r.get(k) for k in COLUMNAS_CSV if k in r},
+        "categoria_nombre": CATEGORIAS.get(r["categoria"]),
+        "gratis": b(r["gratis"]),
+        "duracion_estimada": b(r["duracion_origen"] == "estimada") if r["duracion_min"] else "",
+        "dias_semana": ";".join(dias),
+        **{d: b(d in dias) if dias else "" for d in DIAS.values()},
+        "dias_excluidos": ";".join(r["dias_excluidos"]),
+        "es_recurrente": b(bool(r["dias_semana"])) if r["tipo_registro"] == "evento" else "",
+        "estado": estado,
+        "para_ninos": b(r["para_ninos"]),
+        "publico": ";".join(pub),
+        "publico_infantil": b("infantil" in pub or r["categoria"] == "infantil"),
+        "publico_familias": b("familias" in pub),
+        "publico_jovenes": b("jovenes" in pub),
+        "publico_mayores": b("mayores" in pub),
+        "tiene_coordenadas": b(r["lat"] is not None),
+        "coordenadas_origen": r.get("coordenadas_origen") or ("fuente" if r["lat"] is not None else ""),
+        "num_eventos": r.get("num_eventos", ""),
+        "fuentes": ";".join(r["fuentes"]),
+    }
+    if fila["precio_min"] is not None:
+        p = fila["precio_min"]
+        fila["precio_min"] = int(p) if p == int(p) else p
+    # Textos en una sola línea, sin saltos que rompan el CSV en Excel
+    return {k: ("" if v is None else (re.sub(r"\s+", " ", v) if isinstance(v, str) else v)) for k, v in fila.items()}
+
+
+def escribir_csv(ruta, registros, hoy):
+    with open(ruta, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=COLUMNAS_CSV, extrasaction="ignore")
+        w.writeheader()
+        for r in registros:
+            w.writerow(fila_csv(r, hoy))
+
+
 def ficha(slug):
     return f"{FICHA}{slug}"
 
@@ -571,6 +673,8 @@ def main():
 
     registros = list(eventos.values()) + list(lugares.values())
     registros.sort(key=lambda x: (x["tipo_registro"], x["fecha_inicio"] or "", x["titulo"] or ""))
+    registros, duplicados = limpieza_final(registros)
+    escribir_csv(carpeta / "actividades.csv", registros, hoy)
 
     fuentes = [
         {"id": s, "nombre": n, "tipo": "eventos", "ficha": ficha(s), "descarga": f"{BASE}{s}.json"}
@@ -607,10 +711,10 @@ def main():
     print(f"Banda Sinfónica: {len(bsmm['conciertos'])} conciertos, {len(bsmm['plantilla'])} puestos de plantilla")
 
     # Resumen por pantalla
-    ev = list(eventos.values())
     def pct(n, d):
         return f"{n} ({100 * n / d:.0f}%)" if d else "0"
-    print(f"Eventos: {len(ev)} (descartados por ya terminados: {pasados})")
+    ev = [x for x in registros if x["tipo_registro"] == "evento"]
+    print(f"Eventos: {len(ev)} (descartados por ya terminados: {pasados}, duplicados: {duplicados})")
     print(f"Lugares: {len(lugares)}")
     print(f"  eventos con coordenadas: {pct(sum(1 for e in ev if e['lat'] is not None), len(ev))}")
     print(f"  eventos enlazados a un lugar: {pct(sum(1 for e in ev if e['lugar_id']), len(ev))}")
