@@ -20,10 +20,18 @@ Reglas acordadas con el equipo:
   - Los valores se copian tal cual, sin limpiar. Solo se construyen:
       FECHA y DIAS-SEMANA de Banda (de AÑO+MES+DÍA) y DIAS-SEMANA de Talleres
       (días con HORA_INICIO_<día> rellena).
+  - CATEGORIA: una de las 15 categorías de CATEGORIAS_FINALES.
+      Agenda/Bibliotecas: según TIPO, palabras clave del título/descripción,
+      nombre del lugar y las reglas de revisión de "otros" (las mismas de
+      descargar_y_normalizar.py). Talleres: "Cursos y talleres". Banda: "Música".
 """
 
 import csv
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from descargar_y_normalizar import CATEGORIAS, categoria_evento  # mismas reglas que el resto de datos
 
 CARPETA = Path(__file__).resolve().parent
 ORIG = CARPETA / "originales"
@@ -47,6 +55,25 @@ EQUIVALENCIAS = {
     "PUBLICO":      {"Agenda": "AUDIENCIA", "Talleres": "DESTINATARIO_DESC"},
     "TIPO":         {"Agenda": "TIPO", "Banda": "TIPO"},
 }
+
+CATEGORIAS_FINALES = [
+    "Cursos y talleres", "Música", "Teatro y circo", "Cine", "Deporte", "Infantil", "Conferencias",
+    "Exposición", "Fiestas y festivales", "Danza", "Literatura y recitales", "Visitas e itinerarios",
+    "Aire libre y medio ambiente", "Club de lectura", "Otros",
+]
+
+
+def categoria(fuente, f):
+    if fuente == "Talleres":
+        return "Cursos y talleres"
+    if fuente == "Banda":
+        return "Música"
+    tipo = (f.get("TIPO") or "").replace("/contenido/actividades/", "/kos/actividades/")
+    cat, _, _ = categoria_evento(tipo, f"{f.get('TITULO', '')} {f.get('DESCRIPCION', '')}", None,
+                                 f.get("NOMBRE-INSTALACION", ""), f.get("TITULO", ""))
+    nombre = CATEGORIAS.get(cat, "Otros")
+    return nombre if nombre in CATEGORIAS_FINALES else "Otros"
+
 
 MESES = {m: i for i, m in enumerate(["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
                                      "agosto", "septiembre", "octubre", "noviembre", "diciembre"], 1)}
@@ -82,7 +109,7 @@ def main():
         for n, col in mapa.items():
             usadas[n].add(col)
     usadas["Bibliotecas"] = usadas["Agenda"]
-    columnas = ["FUENTE"] + list(EQUIVALENCIAS)
+    columnas = ["FUENTE", "CATEGORIA"] + list(EQUIVALENCIAS)
     for n, (cab, _) in tablas.items():
         for c in cab:
             if c not in usadas[n] and c not in columnas:
@@ -92,7 +119,7 @@ def main():
     for n, (cab, filas) in tablas.items():
         base = "Agenda" if n == "Bibliotecas" else n
         for f in filas:
-            fila = {"FUENTE": n}
+            fila = {"FUENTE": n, "CATEGORIA": categoria(n, f)}
             for uni, mapa in EQUIVALENCIAS.items():
                 if base in mapa:
                     fila[uni] = f.get(mapa[base], "")
@@ -120,6 +147,11 @@ def main():
     for n, (_, filas) in tablas.items():
         print(f"  {n}: {len(filas)} filas")
     print(f"  Bibliotecas descartadas por estar ya en Agenda: {quitados}")
+    cuenta = {}
+    for fila in salida:
+        cuenta[fila["CATEGORIA"]] = cuenta.get(fila["CATEGORIA"], 0) + 1
+    assert set(cuenta) <= set(CATEGORIAS_FINALES), set(cuenta) - set(CATEGORIAS_FINALES)
+    print("  CATEGORIA:", dict(sorted(cuenta.items(), key=lambda kv: -kv[1])))
 
 
 if __name__ == "__main__":
