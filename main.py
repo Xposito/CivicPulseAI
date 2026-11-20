@@ -280,3 +280,4 @@ def obtener_eventos(
     return {"total": len(resultados), "eventos": resultados}
 
 app.mount("/", StaticFiles(directory=Path(__file__).parent / "web", html=True), name="web")
+#ola
