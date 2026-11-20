@@ -102,7 +102,11 @@ async function cargarCategorias() {
   try {
     const res = await fetch(`${API}/api/categorias`);
     const cats = await res.json();
-    cats.forEach(c => selCategoria.add(new Option(`${c.nombre} (${c.total})`, c.id)));
+    // Un botón por categoría dentro del desplegable (script.js gestiona los clics)
+    const menu = document.getElementById('menu-categorias');
+    cats.forEach(c => menu.insertAdjacentHTML('beforeend',
+      `<button type="button" class="btn-opcion-cat" data-valor="${esc(c.id)}" data-nombre="${esc(c.nombre)}">` +
+      `${esc(c.nombre)} (${c.total})</button>`));
   } catch (err) {
     console.error('No se pudieron cargar las categorías', err);
   }
@@ -111,6 +115,7 @@ async function cargarCategorias() {
 async function buscar() {
   const params = new URLSearchParams();
 
+  // Una o varias categorías separadas por coma: "musica,teatro"
   if (selCategoria.value) params.set('categoria', selCategoria.value);
   if (inputHora.value) params.set('inicio_desde', inputHora.value);
 
@@ -211,6 +216,7 @@ function obtenerUbicacion() {
 }
 
 (async () => {
+  cargarCategorias();
   await obtenerUbicacion();
   buscar();
 })();

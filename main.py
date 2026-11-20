@@ -23,18 +23,21 @@ RUTA_CSV = Path(__file__).parent / "data" / "eventos.csv"
 # Categorías de la web -> categorías del CSV que agrupan.
 # "id" es lo que envía el HTML en ?categoria=...
 GRUPOS = [
-    {"id": "cursos_talleres", "nombre": "Cursos y talleres",          "csv": ["taller"],                  "color": None},
-    {"id": "musica",          "nombre": "Música",                     "csv": ["musica", "danza"],         "color": None},
-    {"id": "espectaculos",    "nombre": "Espectáculos",               "csv": ["teatro", "cine"],          "color": None},
-    {"id": "deporte",         "nombre": "Deporte",                    "csv": ["deporte"],                 "color": None},
-    {"id": "infantil",        "nombre": "Infantil",                   "csv": ["infantil"],                "color": None},
-    {"id": "conferencias",    "nombre": "Conferencias",               "csv": ["conferencia"],             "color": None},
-    {"id": "exposicion",      "nombre": "Exposición",                 "csv": ["exposicion"],              "color": None},
-    {"id": "fiestas",         "nombre": "Fiestas y festivales",       "csv": ["fiestas"],                 "color": "rosa"},
-    {"id": "literatura",      "nombre": "Literatura",                 "csv": ["literatura", "club_lectura"], "color": None},
-    {"id": "visitas",         "nombre": "Visitas e itinerarios",      "csv": ["visita_guiada"],           "color": None},
-    {"id": "aire_libre",      "nombre": "Aire libre y medio ambiente", "csv": ["aire_libre"],             "color": None},
-    {"id": "otros",           "nombre": "Otros",                      "csv": ["otros"],                   "color": "gris"},
+    {"id": "cursos_talleres", "nombre": "Cursos y talleres",          "csv": ["taller"],        "color": None},
+    {"id": "musica",          "nombre": "Música",                     "csv": ["musica"],        "color": None},
+    {"id": "teatro",          "nombre": "Teatro y circo",             "csv": ["teatro"],        "color": None},
+    {"id": "cine",            "nombre": "Cine",                       "csv": ["cine"],          "color": None},
+    {"id": "deporte",         "nombre": "Deporte",                    "csv": ["deporte"],       "color": None},
+    {"id": "infantil",        "nombre": "Infantil",                   "csv": ["infantil"],      "color": None},
+    {"id": "conferencias",    "nombre": "Conferencias",               "csv": ["conferencia"],   "color": None},
+    {"id": "exposicion",      "nombre": "Exposición",                 "csv": ["exposicion"],    "color": None},
+    {"id": "fiestas",         "nombre": "Fiestas y festivales",       "csv": ["fiestas"],       "color": "rosa"},
+    {"id": "danza",           "nombre": "Danza",                      "csv": ["danza"],         "color": None},
+    {"id": "literatura",      "nombre": "Literatura y recitales",     "csv": ["literatura"],    "color": None},
+    {"id": "visitas",         "nombre": "Visitas e itinerarios",      "csv": ["visita_guiada"], "color": None},
+    {"id": "aire_libre",      "nombre": "Aire libre y medio ambiente", "csv": ["aire_libre"],   "color": None},
+    {"id": "club_lectura",    "nombre": "Club de lectura",            "csv": ["club_lectura"],  "color": None},
+    {"id": "otros",           "nombre": "Otros",                      "csv": ["otros"],         "color": "gris"},
 ]
 
 # Búsqueda inversa: categoría del CSV -> grupo
@@ -131,7 +134,7 @@ def obtener_categorias():
 
 @app.get("/api/eventos")
 def obtener_eventos(
-    categoria: Optional[str] = Query(None, description="id de /api/categorias; varias separadas por coma. Ej: musica,espectaculos"),
+    categoria: Optional[str] = Query(None, description="id de /api/categorias; varias separadas por coma. Ej: musica,teatro"),
     duracion_min: Optional[int] = Query(None, ge=0, description="Minutos"),
     duracion_max: Optional[int] = Query(None, ge=0, description="Minutos"),
     inicio_desde: Optional[str] = Query(None, pattern=r"^\d{2}:\d{2}$", description="HH:MM"),
